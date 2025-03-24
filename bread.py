@@ -4,7 +4,7 @@ import subprocess
 
 # GitHub repository details
 REPO_OWNER = "kweku7k"
-REPO_NAME = "your-repo"
+REPO_NAME = "bread"
 
 # Get the current time
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
