@@ -19,7 +19,7 @@ jobs:
 
       - name: Run update script
         run: |
-          python update_readme.py
+          python bread.py
 
       - name: Commit and push changes
         run: |
