@@ -15,8 +15,15 @@ with open(readme_path, "a") as file:
     file.write(f"\nLast updated: {timestamp}")
 
 # Git commands to commit and push
-subprocess.run(["git", "config", "--global", "user.name", "GitHub Actions Bot"])
-subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"])
-subprocess.run(["git", "add", readme_path])
-subprocess.run(["git", "commit", "-m", f"Updated README at {timestamp}"])
-subprocess.run(["git", "push"])
+subprocess.run(["git", "config", "--global", "user.name", "GitHub Actions Bot"], check=True)
+subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
+subprocess.run(["git", "add", readme_path], check=True)
+
+# Run git commit and check if there was anything to commit
+commit_result = subprocess.run(["git", "commit", "-m", f"Updated README at {timestamp}"], check=False)
+
+# Only push if commit was successful
+if commit_result.returncode == 0:
+    subprocess.run(["git", "push"], check=True)
+else:
+    print("Nothing to commit.")
